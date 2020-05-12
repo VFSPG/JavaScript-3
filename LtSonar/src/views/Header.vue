@@ -69,7 +69,7 @@ export default {
 }
 */
 </script>
-<style>
+<style scoped>
     .title h1, .title h3 {
         float:right;
         margin-right: 2vw;

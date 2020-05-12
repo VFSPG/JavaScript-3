@@ -44,7 +44,7 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
     export default new AboutController('pgAbout');
 
 </script>
-<style>
+<style scoped>
 /* Local styles for this template */
     .about-container {
         display: inline-block;
