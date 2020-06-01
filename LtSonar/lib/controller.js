@@ -5,6 +5,8 @@
 import Store from '../src/store.js'
 import Router from '../src/router.js'
 
+import { mapActions, mapGetters } from 'vuex'
+
 export default class Controller {
 
     constructor( name = 'component-name', componentList = [] ) {
@@ -20,8 +22,8 @@ export default class Controller {
         this._extractMethods(['compute_', 'compute','on_', 'on', 'vue_', 'vue', 'get_', 'get']);
     }
 
-    injectActions( actionMap ) { Object.assign( this.methods, actionMap ) }
-    injectGetters( gettersMap ) { Object.assign( this.computed, gettersMap ) }
+    injectActions( actionMap ) { Object.assign( this.methods, mapActions( actionMap ))}
+    injectGetters( gettersMap ) { Object.assign( this.computed, mapGetters( gettersMap ))}
 
     _extractMethods( prefixList ) {
 
