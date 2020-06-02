@@ -6,8 +6,8 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
 
 import Vue from 'vue'
 
-import store from '@/store'
 import router from '@/router'
+import store from '@/store'
 
 //This is were we register every components that is instantiated in this Main Root Component.
 import App from '@/App.vue'

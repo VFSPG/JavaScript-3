@@ -9,9 +9,8 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
 
     <section class="home-container">
         <div class="home">
-            <div>Welcome to your {{ name }}</div>
+            <div>Welcome to your {{ name }} {{ playerName }}</div>
             <div class="dialog">
-
                 <form class="sample-form">
                     <label>Sample field
                         <input name="s1" v-model="formData.sampleOne">
@@ -20,6 +19,11 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
                         <input name="s2" v-model="formData.sampleTwo">
                     </label><br/>
                     <button value="Submit" class="">Submit</button>
+                </form>
+
+                Lobby here:
+                <form class="sample-form" @submit.prevent="login( nickname )">
+                    <label>Nickname: </label><input name="nick" v-model="nickname" :placeholder="playerName">
                 </form>
 
             </div>
@@ -39,11 +43,19 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
                 formData: {
                     sampleOne:"",
                     sampleTwo:42,
-                }
+                },
+                nickname: ""
             }
             this.props = {
                 name: String,
             }
+            this.injectActions(['setName']);
+            this.injectGetters(['playerName']);
+        }
+
+        login( nickname ) {
+
+            this.setName( nickname );
         }
     }
 
