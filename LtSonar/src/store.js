@@ -5,7 +5,7 @@ Copyright (c) 2019. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
-Vue.use( Vuex, Axios )
+Vue.use( Vuex, Axios );
 
 // Modules
 import ModelStore from '@/store/modelStore'
