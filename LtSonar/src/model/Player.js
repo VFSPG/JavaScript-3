@@ -3,8 +3,10 @@
 
 export default class Player {
 
-    constructor( name = "unknown" ) {
+    constructor( name = "unknown", role = "unknown") {
         this.name = name;
+        this.role = "Captain";
+        this.team = "B";
     }
 
     serialize() {

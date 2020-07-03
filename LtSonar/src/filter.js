@@ -13,15 +13,8 @@ Copyright (c) 2018. All Rights Reserved.
 
 import Vue from 'vue'
 
-Vue.filter("uppercase", ( value ) => {
-    if (!value) return ''
-    return value.toUpperCase();
-});
-
-Vue.filter("lowercase", ( value ) => {
-    if (!value) return ''
-    return value.toLowerCase();
-});
+Vue.filter("uppercase", value => (!value ? '' : value.toUpperCase()));
+Vue.filter("lowercase", value => (!value ? '' : value.toLowerCase()));
 
 Vue.filter("capitalize", ( value ) => {
     if (!value) return ''

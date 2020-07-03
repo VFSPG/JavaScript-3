@@ -7,34 +7,82 @@ usage: <ls-engineer user="username" />
 <template>
 
     <section class="engineer-container">
+
         <div class="about">
-            <h1 class="title">{{ name }} ({{ playerName }})</h1>
-
-            <ls-chat :user="user" team="Team A"/>
-
+            <h1 class="title">{{ name }} ({{ player.name }})</h1>
+            <ls-player-info ls-icon="weapons" class="player-info" :role="player.role" :team="player.team">
+                {{ captainsLog }}
+            </ls-player-info>
+            <ls-chat :user="user" :team="player.team" />
         </div>
+
     </section>
 
 </template>
 <script>
     import Controller from '@/../lib/controller'
+
     import lsChat from '@/components/Chat.vue'
+    import lsPlayerInfo from '@/components/PlayerInfo.vue'
 
     class EngineerController extends Controller {
 
         constructor( name, subComponentList = []) {
+
             super( name, subComponentList );
+
             this.vm = {
                 name: 'Engineer Control Panel',
             }
             this.props = {
                 user: String,
             }
-            this.injectGetters(['playerName']);
+
+            this.injectGetters(['player']);
         }
+
+        on_someUpdate() {
+            // whenver there is an update
+        }
+
+        vue_beforeCreated() {
+
+        }
+
+        myMethod() {
+            // do something
+        }
+
+
+
+        /*
+        This object is what the Controller constructor creates
+
+        {
+            this.data() {
+                return {
+                    name: 'Engineer Control Panel';
+                }
+            }
+            this.computed = {
+                SomeUpdate() {}
+
+            }
+            this.methods = {
+
+                myMethod() {}
+            }
+
+            // Lifecycle hooks
+            this.beforeCreated() {}
+
+            this.beforeUpdate() {}
+            this.updated() {}
+        }
+        */
     }
 
-    export default new EngineerController('lsEngineer', { lsChat });
+    export default new EngineerController('lsEngineer', { lsChat, lsPlayerInfo });
 
 </script>
 <style scoped>
@@ -55,5 +103,9 @@ usage: <ls-engineer user="username" />
 
     .title {
         text-shadow: 2px 2px #777;
+    }
+
+    .player-info {
+        width: 40vw;
     }
 </style>

@@ -23,6 +23,11 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
                 <p>
                 This basic view is called a route edge or just a route.  This is the root edge.
                 </p><br/>
+
+                <ls-player-info :role="player.role" :team="player.team">
+                    Special notes...
+                </ls-player-info>
+
             </div>
         </div>
     </section>
@@ -31,6 +36,8 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
 <script>
     import Controller from '@/../lib/controller'
 
+    import lsPlayerInfo from '@/components/PlayerInfo.vue'
+
     class AboutController extends Controller {
 
         constructor( name, subComponentList = []) {
@@ -38,10 +45,12 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
             this.vm = {
                 name: 'VFS Vue Template',
             }
+
+            this.injectGetters(['player']);
         }
     }
 
-    export default new AboutController('pgAbout');
+    export default new AboutController('pgAbout', { lsPlayerInfo });
 
 </script>
 <style scoped>
@@ -54,7 +63,7 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
     .about {
         margin:2vw;
         border: 1px solid black;
-        background-color: lightgray;
+        background-color: grey;
         color: black;
         height: 78vh;
         width: 80vw;

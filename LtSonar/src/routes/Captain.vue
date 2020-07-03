@@ -8,7 +8,7 @@ Usage:  <ls-captain user="username" />
 
     <section class="captain-container">
         <div class="control-panel">
-            <h1 class="title">{{ name }} ({{ playerName }})</h1>
+            <h1 class="title">{{ name }} ({{ player.name }})</h1>
 
             <div class="map panel-main">
                 <table class="captain-map">
@@ -18,18 +18,27 @@ Usage:  <ls-captain user="username" />
                 </table>
             </div>
 
+            <ls-player-info class="player-info" :role="player.role" :team="player.team">
+                {{ captainsLog }}
+            </ls-player-info>
             <ls-chat :user="user" team="Team A"/>
 
             <div class="status panel-status">Sub is not sunk</div>
             <div class="controls panel-control">Buttons here</div>
 
+            <ls-error v-if="error">{{ errorMessage }}</ls-error>
         </div>
+
+
     </section>
 
 </template>
 <script>
     import Controller from '@/../lib/controller'
+
     import lsChat from '@/components/Chat.vue'
+    import lsError from '@/components/Error.vue'
+    import lsPlayerInfo from '@/components/PlayerInfo.vue'
 
     class CaptainController extends Controller {
 
@@ -45,15 +54,16 @@ Usage:  <ls-captain user="username" />
                     ["water", "water", "water", "water", "island", "water"],
                     ["water", "water", "island", "water", "water", "water"],
                 ],
+                captainsLog: "As the captain you make decisions about the actions your boat takes",
             }
             this.props = {
                 user: String,
             }
-            this.injectGetters(['playerName']);
+            this.injectGetters(['error','errorMessage','player']);
         }
     }
 
-    export default new CaptainController('lsCaptain', { lsChat });
+    export default new CaptainController('lsCaptain', { lsChat, lsError, lsPlayerInfo });
 
 </script>
 <style scoped>
@@ -62,7 +72,6 @@ Usage:  <ls-captain user="username" />
         display: inline-block;
         width: 100%;
     }
-
 
     .title {
         text-shadow: 2px 2px #777;
@@ -80,5 +89,9 @@ Usage:  <ls-captain user="username" />
 
     .island {
         background-color: green;
+    }
+
+    .player-info {
+        width: 30vw;
     }
 </style>

@@ -8,9 +8,11 @@ import Vue from 'vue'
 
 import router from '@/router'
 import store from '@/store'
+import filter from '@/filter'
 
 //This is were we register every components that is instantiated in this Main Root Component.
 import App from '@/App.vue'
+import lsIcon from '@/components/icon.vue'
 
 // Main entry point of the application
 document.addEventListener('DOMContentLoaded', event => {

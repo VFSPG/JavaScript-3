@@ -56,6 +56,7 @@ Copyright (c) 2018. Scott Henshaw, Kibble Online Inc. All Rights Reserved.
         login( nickname ) {
 
             this.setName( nickname );
+            // .then( logged in )
         }
     }
 
